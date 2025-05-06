@@ -5,7 +5,7 @@ import { Briefcase, GraduationCap, User } from "lucide-react"
 export default function AboutPage() {
   const experiences = [
     {
-      title: "Engineering Intern",
+      title: "Software Engineering Intern",
       company: "Tech Innovations Inc.",
       period: "May 2023 - August 2023",
       description:
