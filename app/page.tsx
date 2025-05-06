@@ -13,12 +13,11 @@ export default function Home() {
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Parsa Ahmadi</h1>
                 <p className="text-xl text-muted-foreground">
-                  Mechatronics Engineering Student at the University of Waterloo
+                  Mechatronics Engineering Student at the University of Waterloo | Minor in Artificial Intelligence
                 </p>
               </div>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Passionate about robotics, automation, and innovative engineering solutions. Exploring the intersection
-                of mechanical engineering, electronics, and software.
+                Full-stack developer and mechanical engineer passionate about robotics, automation, and innovative solutions, blending software, hardware, and design.
               </p>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link href="/projects">
@@ -56,7 +55,7 @@ export default function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Skills & Expertise</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Combining mechanical engineering, electronics, and programming to build innovative solutions
+                Integrating mechanical design, electronics, and full-stack development to deliver high-impact engineering solutions
               </p>
             </div>
           </div>
@@ -67,25 +66,25 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold">Robotics & Automation</h3>
               <p className="text-center text-muted-foreground">
-                Designing and building robotic systems with a focus on precision and efficiency
+                Building autonomous systems and automating processes to improve efficiency and precision
               </p>
             </div>
             <div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                 <Code className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold">Software Development</h3>
+              <h3 className="text-xl font-bold">Software & Web Development</h3>
               <p className="text-center text-muted-foreground">
-                Creating embedded systems software and applications for control systems
+                Creating full-stack applications with React, C#, .NET, JavaScript, and SQL to deliver robust solutions
               </p>
             </div>
             <div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                 <GraduationCap className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-bold">Academic Excellence</h3>
+              <h3 className="text-xl font-bold">Engineering Excellence</h3>
               <p className="text-center text-muted-foreground">
-                Applying theoretical knowledge to practical engineering challenges
+                Applying theoretical knowledge and hands-on experience to solve complex mechanical and software challenges
               </p>
             </div>
           </div>
