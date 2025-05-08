@@ -7,54 +7,54 @@ import { ExternalLink, Github } from "lucide-react"
 export default function ProjectsPage() {
   const projects = [
     {
-      title: "Autonomous Delivery Robot",
+      title: "Waterloo Management System",
       description:
-        "Designed and built a small-scale autonomous robot capable of navigating indoor environments and delivering small packages.",
+        "A secure management system with role-based access, built with C#, .NET, and SQL. Designed to efficiently handle account information and automation for Waterloo organizations.",
       image: "/placeholder.svg?height=300&width=500",
-      technologies: ["ROS", "Python", "Computer Vision", "Arduino"],
+      technologies: ["C#", ".NET", "SQL", "Backend"],
       github: "#",
       demo: "#",
     },
     {
-      title: "Smart Home Energy Monitor",
+      title: "Tic-Tac-Toe Solver Robot",
       description:
-        "Developed a system to monitor and analyze home energy usage with real-time feedback and suggestions for optimization.",
+        "A robot that plays Tic-Tac-Toe optimally using ROBOTC and Python, achieving a 100% win/draw rate. Features a Python-based solver and enhanced robot performance.",
       image: "/placeholder.svg?height=300&width=500",
-      technologies: ["IoT", "Embedded Systems", "Data Visualization", "PCB Design"],
+      technologies: ["ROBOTC", "Python", "Algorithm", "Robotics"],
       github: "#",
       demo: "#",
     },
     {
-      title: "Robotic Arm Control System",
+      title: "OpenBioML & Neurosnap Platform",
       description:
-        "Implemented a control system for a 6-DOF robotic arm with inverse kinematics for precise positioning and object manipulation.",
+        "Developed a responsive website for OpenBioML using HTML, CSS, and JavaScript. Built a database of millions of chemical compounds for Fortune 100 research, and maintained/updated the Neurosnap platform.",
       image: "/placeholder.svg?height=300&width=500",
-      technologies: ["C++", "Control Theory", "MATLAB", "3D Printing"],
+      technologies: ["JavaScript", "HTML", "CSS", "Database", "Web Development"],
       github: "#",
       demo: "#",
     },
     {
-      title: "Automated Hydroponics System",
+      title: "Engineering FMEA Automation (Linamar)",
       description:
-        "Created an automated system for monitoring and controlling environmental conditions in a small-scale hydroponics setup.",
+        "Automated a manual operation and led the transition to AIAG-VDA FMEA format for major automotive clients. Designed SolidWorks models, reducing part costs by up to 40% and improving process efficiency.",
       image: "/placeholder.svg?height=300&width=500",
-      technologies: ["Microcontrollers", "Sensors", "Automation", "Web Dashboard"],
+      technologies: ["SolidWorks", "Process Automation", "FMEA", "Production Analysis"],
       github: "#",
       demo: "#",
     },
   ]
 
   return (
-    <div className="container py-12">
-      <div className="space-y-8">
+    <div className="min-h-screen bg-black text-white py-12">
+      <div className="container space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold">Projects</h1>
-          <p className="text-muted-foreground">A showcase of my engineering projects and technical work</p>
+          <h1 className="text-4xl font-extrabold mb-2">Projects</h1>
+          <p className="text-gray-300">A showcase of my engineering and software projects, spanning automation, robotics, and web development.</p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden">
+            <Card key={index} className="overflow-hidden bg-gray-900 border border-gray-800 rounded-2xl shadow-lg">
               <div className="aspect-video w-full overflow-hidden">
                 <img
                   src={project.image || "/placeholder.svg"}
@@ -63,8 +63,8 @@ export default function ProjectsPage() {
                 />
               </div>
               <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <div className="flex flex-wrap gap-1">
+                <CardTitle className="text-white text-2xl font-bold mb-1">{project.title}</CardTitle>
+                <div className="flex flex-wrap gap-1 mb-2">
                   {project.technologies.map((tech, i) => (
                     <Badge key={i} variant="secondary">
                       {tech}
@@ -73,7 +73,7 @@ export default function ProjectsPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">{project.description}</CardDescription>
+                <CardDescription className="text-base text-gray-300">{project.description}</CardDescription>
               </CardContent>
               <CardFooter className="flex justify-between">
                 <Button variant="outline" size="sm" asChild>
