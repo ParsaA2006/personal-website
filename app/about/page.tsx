@@ -64,7 +64,7 @@ export default function AboutPage() {
             <User className="h-6 w-6" />
             <h1 className="text-3xl font-bold">About Me</h1>
           </div>
-          <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
+          <div className="grid gap-8 md:grid-cols-1">
             <div className="space-y-4">
               <p className="text-lg">
                 I'm Parsa Ahmadi, a driven Mechatronics Engineering student at the University of Waterloo with a strong passion for software engineering, automation, and innovative problem-solving. My experience spans full-stack web development, database engineering, and mechanical design, with a proven track record of delivering impactful solutions in both software and hardware domains.
@@ -103,17 +103,6 @@ export default function AboutPage() {
                   <Badge>AutoCAD</Badge>
                   <Badge>Figma</Badge>
                 </div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="relative aspect-square w-full max-w-[300px] overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-700 p-2">
-                <img
-                  src="/placeholder.svg?height=300&width=300"
-                  alt="Parsa Ahmadi"
-                  width={300}
-                  height={300}
-                  className="rounded-lg object-cover"
-                />
               </div>
             </div>
           </div>

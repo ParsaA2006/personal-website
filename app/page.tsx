@@ -43,28 +43,22 @@ const projects = [
   },
 ]
 
-const NAVIGATION = [
-  { label: "home", path: "/" },
-  { label: "about", path: "/about" },
-  { label: "projects", path: "/projects" },
-  { label: "resume", path: "/resume" },
-]
-
 export default function Home() {
   const [search, setSearch] = useState("");
   const [expanded, setExpanded] = useState<number | null>(null);
   const router = useRouter();
 
-  // Navigation search
   const normalized = search.trim().toLowerCase();
+  const NAVIGATION = [
+    { label: "home", path: "/" },
+    { label: "about", path: "/about" },
+    { label: "projects", path: "/projects" },
+    { label: "resume", path: "/resume" },
+  ];
   const navMatch = NAVIGATION.find((nav) => normalized === nav.label);
-
-  // If search matches a navigation, redirect
   if (navMatch) {
     router.push(navMatch.path);
   }
-
-  // Blog/project search
   const filteredBlogs = blogs.filter(
     (blog) =>
       blog.title.toLowerCase().includes(normalized) ||
@@ -101,11 +95,11 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container flex flex-col md:flex-row items-center gap-10 py-16 md:py-24">
-        <div className="flex-1 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">Parsa Ahmadi</h1>
-          <p className="text-xl text-gray-300">Mechatronics Engineering Student at the University of Waterloo <span className="text-blue-400">|</span> Minor in Artificial Intelligence</p>
-          <p className="text-lg text-gray-400 max-w-xl">
+      <section className="container flex flex-col md:flex-row items-center gap-16 py-20 md:py-32">
+        <div className="flex-1 space-y-8">
+          <h1 className="text-5xl font-extrabold tracking-tight text-white mb-2">Parsa Ahmadi</h1>
+          <p className="text-2xl text-gray-300 mb-4">Mechatronics Engineering Student at the University of Waterloo <span className="text-blue-400">|</span> Minor in Artificial Intelligence</p>
+          <p className="text-lg text-gray-400 max-w-xl mb-6">
             Previously @ Neurosnap as a Software Engineer and @ Linamar as a Mechanical Engineer. Passionate about building impactful software and engineering solutions that bridge technology and real-world needs.
           </p>
           <div className="flex gap-4 pt-2">
@@ -118,13 +112,13 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-700 p-2 shadow-lg">
+          <div className="w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-700 p-2 shadow-xl flex items-center justify-center">
             <img
-              src="/placeholder.svg?height=320&width=320"
+              src="/profile.jpg"
               alt="Parsa Ahmadi"
               width={320}
               height={320}
-              className="rounded-xl object-cover w-full h-full"
+              className="rounded-2xl object-cover w-full h-full border-4 border-gray-800 shadow-lg"
             />
           </div>
         </div>
