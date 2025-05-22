@@ -4,7 +4,6 @@ This is the source code for my personal website and portfolio, built with Next.j
 
 ## 🚀 Features
 
-- Modern, responsive design inspired by [nicholas-personal-website-eta.vercel.app](https://nicholas-personal-website-eta.vercel.app/)
 - Project portfolio with detailed pages
 - Blog section with personal and technical posts
 - Resume page with PDF download
