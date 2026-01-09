@@ -11,7 +11,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing query" }, { status: 400 })
     }
     if (!apiKey) {
-      return NextResponse.json({ error: "Missing Grok API key" }, { status: 500 })
+      return NextResponse.json({ 
+        error: "AI service is not configured. Please set GROK_API_KEY environment variable." 
+      }, { status: 500 })
     }
 
     // Check if the query is about the resume
@@ -35,7 +37,7 @@ export async function POST(req: NextRequest) {
     if (resumeKeywords.some(keyword => lowerQuery.includes(keyword))) {
       return NextResponse.json({
         result: "You can download or view Parsa Ahmadi's resume here:",
-        resumeUrl: "/Parsa_Ahmadi_Resume&Transcript_Fall 2025.pdf"
+        resumeUrl: "/Parsa-Ahmadi-S2026.pdf"
       })
     }
 
@@ -61,9 +63,16 @@ export async function POST(req: NextRequest) {
     })
 
     if (!grokRes.ok) {
-      const error = await grokRes.text()
-      console.error("Grok API error:", error)
-      return NextResponse.json({ error }, { status: grokRes.status })
+      let errorMessage = "Failed to get response from AI service"
+      try {
+        const errorData = await grokRes.json()
+        errorMessage = errorData.error?.message || errorData.error || errorMessage
+      } catch {
+        const errorText = await grokRes.text()
+        errorMessage = errorText || errorMessage
+      }
+      console.error("Grok API error:", errorMessage)
+      return NextResponse.json({ error: errorMessage }, { status: grokRes.status })
     }
 
     const data = await grokRes.json()

@@ -5,53 +5,45 @@ import { Briefcase, GraduationCap, User } from "lucide-react"
 export default function AboutPage() {
   const experiences = [
     {
-      title: "Software Engineer Intern",
+      title: "Software Engineering Intern",
+      company: "BTNX",
+      period: "Sep 2025 – Dec 2025",
+      description:
+        "Built a full-stack ERP SaaS platform serving 1,000+ users, developing 30+ pages with React, TypeScript, and .NET. Optimized performance by 30% through database tuning and caching strategies. Created AI-powered features using PyTorch for OCR/NLP and XGBoost for diagnostic classification, achieving 96-99% accuracy.",
+      skills: ["React", "TypeScript", ".NET", "ASP.NET", "C#", "SQL Server", "Redis", "Blazor", "Python", "PyTorch", "XGBoost", "Entity Framework"],
+    },
+    {
+      title: "Software Engineering Intern",
       company: "Neurosnap",
-      period: "Mar 2025 – May 2025",
+      period: "May 2025 – Aug 2025",
       description:
-        "Developed a responsive website for OpenBioML using HTML, CSS, and JavaScript, ensuring seamless functionality across multiple devices and improving user experience. Maintained and updated the OpenBioML and Neurosnap websites by fixing bugs and adding new features using JavaScript, HTML, and CSS. Created a database of millions of chemical compounds, leveraging JavaScript to enable efficient data retrieval and analysis, facilitating research for multiple Fortune 100 companies.",
-      skills: ["JavaScript", "HTML", "CSS", "Database", "Web Development"],
+        "Developed research dashboards and ML pipelines for protein analysis, improving render performance by 35% and reducing processing errors by 25%. Designed optimized PostgreSQL schemas and containerized prediction pipelines with Docker, automating workflows that saved research labs $20,000+ annually.",
+      skills: ["TypeScript", "React", "Python", "Flask", "PostgreSQL", "Docker", "ML Pipelines"],
     },
     {
-      title: "Mechanical Engineer Intern",
-      company: "Linamar Corporation",
-      period: "Jan 2025 – Apr 2025",
+      title: "Autonomy Team Member",
+      company: "Waterloo Aerial Robotics Group (WARG)",
+      period: "May 2025 – Dec 2025",
       description:
-        "Reviewed and implemented Engineering Change Notices (ECNs), conducted capability tests, and assisted in updating process dimension sheets, tool paths, and SolidWorks documentation to improve manufacturing accuracy and efficiency. Led the transition from traditional AIAG-style FMEAs to the new AIAG-VDA FMEA format for multiple customers, including General Motors, Ford, and Stellantis, ensuring compliance with updated industry standards. Collected and analyzed production data, and led the automation of a manual operation, resulting in annual cost savings of over $40,000. Designed models and professional drawings in SolidWorks for machine components, reducing part costs by up to 40%. Led the redesign of machine work instructions across multiple departments to implement a structured troubleshooting guide, improving efficiency by 20%.",
-      skills: ["SolidWorks", "Production Analysis", "FMEA", "Process Automation"],
-    },
-    {
-      title: "Project Developer",
-      company: "UW Blueprint",
-      period: "Oct 2024 – Dec 2024",
-      description:
-        "Added features to the UW Blueprint website, enhancing functionality using React, JavaScript, HTML, and CSS. Gained experience following the software development lifecycle, including designing, implementing, testing, reviewing, and deploying code in a collaborative environment.",
-      skills: ["React", "JavaScript", "HTML", "CSS", "SDLC"],
-    },
-    {
-      title: "Mechanical Design Member – Chassis Team",
-      company: "UW Waterloo Alternative Fuels Team (UWAFT)",
-      period: "Sep 2024 – Dec 2024",
-      description:
-        "Co-designed structural components of the vehicle chassis to decrease material costs by 15%. Performed Finite Element Analysis (FEA) and used SolidWorks to optimize weight distribution and ensure compliance with safety and performance requirements.",
-      skills: ["SolidWorks", "FEA", "Mechanical Design"],
+        "Developed computer vision systems for autonomous drone navigation, achieving 90% detection accuracy using OpenCV and TensorFlow. Built real-time telemetry systems in ROS2, reducing communication latency by 40% through optimized asynchronous data handling.",
+      skills: ["C++", "Python", "OpenCV", "TensorFlow", "ROS2", "PyQt", "Computer Vision", "ML"],
     },
   ]
 
   const projects = [
     {
-      title: "Waterloo Management System | C#, .NET, SQL",
-      period: "Mar 2025",
+      title: "Premier League Predictor | Python, FastAPI, React, TypeScript, Docker",
+      period: "Nov 2025",
       description:
-        "Designed and developed a Waterloo management system with a secure role-based access control. Built a backend with C# and .NET, and engineered a database using SQL to efficiently handle account information and automation.",
-      skills: ["C#", ".NET", "SQL", "Backend"],
+        "A full-stack ML application that predicts Premier League match outcomes using XGBoost and scikit-learn. Features automated data scraping, feature engineering, and containerized deployment with Docker and CI/CD pipelines, reducing setup time by 80%.",
+      skills: ["Python", "FastAPI", "React", "TypeScript", "Docker", "XGBoost", "scikit-learn", "CI/CD"],
     },
     {
-      title: "Tic-Tac-Toe Solver Robot | ROBOTC, Python",
+      title: "Tic-Tac-Toe Solver Robot | C++, RobotC",
       period: "Dec 2024",
       description:
-        "Engineered a ROBOTC algorithm that enables a robot to play Tic-Tac-Toe optimally, achieving a 100% win/draw rate. Enhanced robot performance by integrating a Python-based solver, reducing positioning errors by 30% and solving the game in under 2 seconds with 100% accuracy.",
-      skills: ["ROBOTC", "Python", "Algorithm", "Robotics"],
+        "An autonomous LEGO EV3 robot that plays Tic-Tac-Toe using color-sensor board detection and real-time game processing. Features calibrated multi-axis motor control for precise move placement across a 3×3 grid.",
+      skills: ["C++", "RobotC", "Robotics", "Computer Vision"],
     },
   ]
 
@@ -141,7 +133,7 @@ export default function AboutPage() {
                 <CardHeader>
                   <CardTitle>{exp.title}</CardTitle>
                   <CardDescription>
-                    {exp.company} | {exp.period}
+                    {exp.company ? `${exp.company} | ${exp.period}` : exp.period}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">

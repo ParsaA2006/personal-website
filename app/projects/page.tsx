@@ -7,20 +7,20 @@ import { ExternalLink, Github } from "lucide-react"
 export default function ProjectsPage() {
   const projects = [
     {
-      title: "Waterloo Management System",
+      title: "Premier League Predictor",
       description:
-        "A secure management system with role-based access, built with C#, .NET, and SQL. Designed to efficiently handle account information and automation for Waterloo organizations.",
-      image: "/management-system.png",
-      technologies: ["C#", ".NET", "SQL", "Backend"],
-      github: "#",
-      readMore: "/projects/waterloo-management-system",
+        "A full-stack application that predicts Premier League match outcomes using machine learning. Features data scraping, feature engineering with XGBoost and scikit-learn, and containerized deployment with Docker and CI/CD pipelines.",
+      image: "/prem.jpg",
+      technologies: ["Python", "FastAPI", "React", "TypeScript", "Docker", "XGBoost", "ML"],
+      github: "https://github.com/ParsaA2006/premier-league-predictor",
+      readMore: "/projects/premier-league-predictor",
     },
     {
       title: "Tic-Tac-Toe Solver Robot",
       description:
-        "A robot that plays Tic-Tac-Toe optimally using ROBOTC and Python, achieving a 100% win/draw rate. Features a Python-based solver and enhanced robot performance.",
+        "An autonomous LEGO EV3 robot that plays Tic-Tac-Toe, implementing color-sensor board detection and real-time game-state processing. Features calibrated multi-axis motor control for accurate move placement.",
       image: "/tic-tac-tron.jpg",
-      technologies: ["ROBOTC", "Python", "Algorithm", "Robotics"],
+      technologies: ["C++", "RobotC", "Robotics", "Computer Vision"],
       github: "https://github.com/ParsaA2006/Tic-Tac-Tron",
       readMore: "/projects/tic-tac-tron",
     },

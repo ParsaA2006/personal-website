@@ -13,7 +13,7 @@ export default function ResumePage() {
           <p className="text-muted-foreground">Resume</p>
         </div>
         <Button asChild className="w-full sm:w-auto">
-          <a href="/Parsa_Ahmadi_Resume&Transcript_Fall 2025.pdf" target="_blank" rel="noopener noreferrer">
+          <a href="/Parsa-Ahmadi-S2026.pdf" target="_blank" rel="noopener noreferrer">
             <Download className="mr-2 h-4 w-4" />
             Download PDF
           </a>
@@ -47,7 +47,7 @@ export default function ResumePage() {
               <div>
                 <div className="font-semibold">University of Waterloo</div>
                 <div className="italic">Bachelor of Applied Science in Mechatronics Engineering | Minor: Artificial Intelligence</div>
-                <div className="text-sm text-muted-foreground">President's Scholarship of Distinction</div>
+                <div className="text-sm text-muted-foreground mt-1">Coursework: Data Structures and Algorithms, Digital Logic</div>
               </div>
               <div className="text-sm text-muted-foreground sm:text-right">Expected Graduation: Apr 2029<br />Waterloo, ON</div>
             </div>
@@ -62,16 +62,13 @@ export default function ResumePage() {
           </CardHeader>
           <CardContent className="space-y-2">
             <div>
-              <span className="font-semibold">Languages:</span> Python, Java, JavaScript, TypeScript, HTML/CSS, C++, C#, SQL, MATLAB, ROBOTC
+              <span className="font-semibold">Languages:</span> Python, TypeScript, JavaScript, C, C++, C#, Java, SQL, HTML/CSS
             </div>
             <div>
-              <span className="font-semibold">Developer Tools:</span> VS Code, Jupyter Notebook, Git, GitHub, AWS, Docker
+              <span className="font-semibold">Developer Tools:</span> Azure, Git, AWS, Docker, Postman, PostgreSQL, SQL Server, MySQL, Redis, Jupyter Notebook, Jira
             </div>
             <div>
-              <span className="font-semibold">Technologies/Frameworks:</span> React, Next.js, .NET Core, ASP.NET, Node.js, Angular, Blazor, Tailwind CSS
-            </div>
-            <div>
-              <span className="font-semibold">Design Software:</span> SOLIDWORKS, AutoCAD, Siemens NX, Fusion 360, Figma
+              <span className="font-semibold">Frameworks/Libraries:</span> React, Next.js, Angular, Blazor, ASP.NET, .NET, Entity Framework, Node.js, Express, PyTorch, TensorFlow, scikit-learn, XGBoost, NumPy, Pandas, OpenCV, ROS2, PyQt
             </div>
           </CardContent>
         </Card>
@@ -82,17 +79,45 @@ export default function ResumePage() {
             <CardTitle>Experience</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
+            {/* BTNX */}
+            <div>
+              <div className="flex flex-col sm:flex-row sm:justify-between">
+                <div className="font-semibold">BTNX</div>
+                <div className="text-sm text-muted-foreground">Sep 2025 – Dec 2025 | Toronto, ON</div>
+              </div>
+              <div className="italic text-sm">Software Engineering Intern</div>
+              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
+                <li>Developed a full-stack ERP SaaS platform using React, Typescript, and .NET, building 30+ end-to-end pages and designing the normalized SQL Server schema, serving 1,000+ active users</li>
+                <li>Reduced load times by 30% across key modules through optimizing LINQ queries in C#, implementing async/await validation, and improving SQL performance by introducing table indexes, stored procedures, and a Redis lookup cache</li>
+                <li>Engineered scalable RESTful APIs with ASP.NET and Entity Framework to handle 5k+ daily requests, reducing downtime by 20% and implementing integrations with Microsoft Graph and Amazon SP API</li>
+                <li>Built an AI-powered conference tracking module with Blazor and Python, training OCR and NLP models using PyTorch to extract business card data and auto-populate attendee profiles with 96% accuracy</li>
+                <li>Developed Python scripts to train and deploy an XGBoost classification model for diagnostic strips with ONNX Runtime inference integrated into a Blazor interface, achieving 99% strip reader accuracy</li>
+              </ul>
+            </div>
             {/* Neurosnap */}
             <div>
               <div className="flex flex-col sm:flex-row sm:justify-between">
                 <div className="font-semibold">Neurosnap</div>
-                <div className="text-sm text-muted-foreground">Mar 2025 – May 2025 | Toronto, ON</div>
+                <div className="text-sm text-muted-foreground">May 2025 – Aug 2025 | Toronto, ON</div>
               </div>
-              <div className="italic text-sm">Full Stack Developer Intern</div>
+              <div className="italic text-sm">Software Engineering Intern</div>
               <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Developed a responsive website for OpenBioML using HTML, CSS, and JavaScript, increasing user base by 30%.</li>
-                <li>Maintained and updated OpenBioML and Neurosnap websites, fixing bugs and adding new features using JavaScript, HTML, and CSS.</li>
-                <li>Created a database of millions of chemical compounds, leveraging JavaScript for efficient data retrieval and analysis for Fortune 100 companies.</li>
+                <li>Built responsive research dashboards for AI-driven protein and enzyme analysis using TypeScript and React, reducing dashboard render time by 35% for large bioinformatics datasets</li>
+                <li>Built backend services in Python using Flask, integrating ML pipelines for molecular docking and sequence analysis, and reducing processing errors by more than 25%</li>
+                <li>Designed PostgreSQL schemas and indexed queries for storing protein structures, variant predictions, and experiment results, improving query performance by nearly 50%</li>
+                <li>Integrated RESTful APIs with Python and Flask for NeuroFold model inference and containerized batch prediction pipelines with Docker, automating research and saving laboratories $20000+ annually</li>
+              </ul>
+            </div>
+            {/* WARG */}
+            <div>
+              <div className="flex flex-col sm:flex-row sm:justify-between">
+                <div className="font-semibold">Waterloo Aerial Robotics Group (WARG)</div>
+                <div className="text-sm text-muted-foreground">May 2025 – Dec 2025 | Waterloo, ON</div>
+              </div>
+              <div className="italic text-sm">Autonomy Team Member</div>
+              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
+                <li>Developed computer vision modules for landing pad detection and obstacle avoidance, increasing detection accuracy to 90% by training ML models with OpenCV, TensorFlow, and deploying inference pipelines in C++ within ROS2</li>
+                <li>Implemented real-time telemetry features in the IMACS 2.0 ground-station, reducing communication latency from 150 ms to 90 ms by optimizing asynchronous data handling using Python, PyQt, and ROS2</li>
               </ul>
             </div>
             {/* Linamar */}
@@ -109,30 +134,6 @@ export default function ResumePage() {
                 <li>Redesigned machine work instructions, improving efficiency by 20%.</li>
               </ul>
             </div>
-            {/* UW Blueprint */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:justify-between">
-                <div className="font-semibold">UW Blueprint</div>
-                <div className="text-sm text-muted-foreground">Oct 2024 – Dec 2024 | Waterloo, ON</div>
-              </div>
-              <div className="italic text-sm">Project Developer</div>
-              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Added features to the UW Blueprint website using React, JavaScript, HTML, and CSS.</li>
-                <li>Collaborated on the full software lifecycle: design, implementation, testing, review, and deployment.</li>
-              </ul>
-            </div>
-            {/* UWAFT */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:justify-between">
-                <div className="font-semibold">UW Waterloo Alternative Fuels Team (UWAFT)</div>
-                <div className="text-sm text-muted-foreground">Sep 2024 – Dec 2024 | Waterloo, ON</div>
-              </div>
-              <div className="italic text-sm">Mechanical Design Member – Chassis Team</div>
-              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Co-designed structural chassis components to decrease material costs by 15%.</li>
-                <li>Performed Finite Element Analysis (FEA) and used SolidWorks to optimize weight distribution and ensure compliance with safety and performance requirements.</li>
-              </ul>
-            </div>
           </CardContent>
         </Card>
 
@@ -143,17 +144,17 @@ export default function ResumePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <div className="font-semibold">Waterloo Management System | C#, .NET, SQL</div>
+              <div className="font-semibold">Premier League Predictor | Python, FastAPI, React, TypeScript, Docker</div>
               <ul className="list-disc list-inside text-sm ml-4">
-                <li>Designed and developed a Waterloo management system with secure role-based access control.</li>
-                <li>Built a backend with C# and .NET; engineered a database using SQL to efficiently handle account information and automation.</li>
+                <li>Created a model to predict match outcomes, integrating data scraping with feature engineering and machine learning using XGBoost and scikit-learn</li>
+                <li>Containerized the full-stack application using Docker with multi-stage builds and integrated CI/CD pipelines, enabling automated testing, consistent deployments across environments, and reducing setup time by over 80%</li>
               </ul>
             </div>
             <div>
-              <div className="font-semibold">Tic-Tac-Toe Solver Robot | ROBOTC, Python</div>
+              <div className="font-semibold">Tic-Tac-Toe Solver Robot | C++, RobotC</div>
               <ul className="list-disc list-inside text-sm ml-4">
-                <li>Engineered a ROBOTC algorithm for a robot to play Tic-Tac-Toe optimally, achieving a 100% win/draw rate.</li>
-                <li>Enhanced robot performance by integrating a Python-based solver, reducing positioning errors by 30% and solving the game in under 2 seconds with 100% accuracy.</li>
+                <li>Programmed an autonomous LEGO EV3 Tic-Tac-Toe robot in C++, implementing color-sensor board detection and real-time game-state processing to interpret human moves</li>
+                <li>Integrated and calibrated the EV3's multi-axis motors by mapping grid coordinates to calibrated motor rotation angles, ensuring accurate and consistent move placement across the 3×3 grid</li>
               </ul>
             </div>
           </CardContent>

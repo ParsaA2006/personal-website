@@ -33,14 +33,21 @@ This is the source code for my personal website and portfolio, built with Next.j
    yarn install
    ```
 
-3. **Run the development server:**
+3. **Set up environment variables:**
+   ```bash
+   cp .env.local.example .env.local
+   # Then edit .env.local and add your GROK_API_KEY
+   # Get your API key from: https://console.groq.com/
+   ```
+
+4. **Run the development server:**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
+5. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
 ## 📄 Resume
 

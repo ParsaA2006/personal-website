@@ -30,7 +30,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         if (res.resumeUrl) setResumeUrl(res.resumeUrl)
       }
     } catch (err: any) {
-      setError("Sorry, something went wrong.")
+      setError(err.message || "Sorry, something went wrong.")
+      console.error("Search error:", err)
     } finally {
       setLoading(false)
     }
