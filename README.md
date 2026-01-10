@@ -63,4 +63,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Feel free to reach out via [email](mailto:p3ahmadi@uwaterloo.com) or [LinkedIn](https://linkedin.com/in/parsa-ahmadi2006) for collaboration or questions! 
+Feel free to reach out via [email](mailto:p3ahmadi@uwaterloo.ca) or [LinkedIn](https://linkedin.com/in/parsa-ahmadi2006) for collaboration or questions! 

@@ -73,7 +73,7 @@ export default function Home() {
           <h1 className="text-5xl font-extrabold tracking-tight text-white mb-2">Parsa Ahmadi</h1>
           <p className="text-2xl text-gray-300 mb-4">Mechatronics Engineering Student at the University of Waterloo <span className="text-blue-400">|</span> Minor in Artificial Intelligence</p>
           <p className="text-lg text-gray-400 max-w-xl mb-6">
-            Currently @ BTNX as a Software Engineering Intern. Previously @ Neurosnap and @ WARG. Passionate about building impactful software and engineering solutions that bridge technology and real-world needs.
+            Previously @ BTNX and Neurosnap. Passionate about building impactful software and engineering solutions that bridge technology and real-world needs.
           </p>
           <div className="flex gap-4 pt-2">
             <Link href="/projects">

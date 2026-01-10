@@ -29,7 +29,7 @@ export default function ResumePage() {
           <CardContent className="flex flex-wrap gap-4 items-center">
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-muted-foreground" />
-              <span>p3ahmadi@uwaterloo.com</span>
+              <span>p3ahmadi@uwaterloo.ca</span>
             </div>
             <Link href="https://linkedin.com/in/parsa-ahmadi2006" className="text-blue-500 hover:underline" target="_blank">LinkedIn</Link>
             <Link href="https://github.com/ParsaA2006" className="text-blue-500 hover:underline" target="_blank">GitHub</Link>
