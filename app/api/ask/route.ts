@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
+import { getAskParsaContext, getPublicResumeHref } from "@/lib/portfolio-data"
 
 const DEFAULT_GROQ_MODEL = "openai/gpt-oss-120b"
+const RESUME_URL = getPublicResumeHref()
+const SYSTEM_PROMPT = getAskParsaContext()
 
 const RESUME_KEYWORDS = [
   "resume",
@@ -19,17 +22,13 @@ const RESUME_KEYWORDS = [
   "show cv",
 ]
 
-const SYSTEM_PROMPT = `
-You are Ask Parsa, the AI assistant on Parsa Ahmadi's personal website.
-
-Use the following information when answering questions about Parsa:
-- Parsa Ahmadi is a Mechatronics Engineering student at the University of Waterloo pursuing a minor in Artificial Intelligence.
-- His experience includes Software Engineering Intern roles at BTNX and Neurosnap, work with the Waterloo Aerial Robotics Group (WARG), and a Mechanical Engineer Intern role at Linamar Corporation.
-- Featured projects on the site include the Premier League Predictor, Tic-Tac-Tron, and the Waterloo Management System.
-- His technical stack includes Python, TypeScript, JavaScript, C/C++, C#, Java, SQL, MATLAB, React, Next.js, ASP.NET, .NET, Node.js, Angular, Blazor, Tailwind CSS, Docker, PyTorch, TensorFlow, XGBoost, PostgreSQL, SQL Server, Redis, OpenCV, and ROS2.
-
-Answer in short, polished paragraphs. Do not use bullet points, numbered lists, or markdown. If the website information does not clearly support an answer, say you do not have that detail rather than guessing.
-`.trim()
+const PRIVATE_DOCUMENT_KEYWORDS = [
+  "transcript",
+  "application pdf",
+  "application package",
+  "recommendation letter",
+  "reference letter",
+]
 
 type GroqErrorResponse = {
   error?: {
@@ -69,6 +68,10 @@ function getUserFacingErrorMessage(status: number) {
   return "Ask Parsa AI couldn't answer right now. Please try again in a moment."
 }
 
+function includesKeyword(query: string, keywords: string[]) {
+  return keywords.some((keyword) => query.includes(keyword))
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as { query?: unknown }
@@ -79,16 +82,28 @@ export async function POST(req: NextRequest) {
     }
 
     const lowerQuery = query.toLowerCase()
-    if (RESUME_KEYWORDS.some((keyword) => lowerQuery.includes(keyword))) {
+
+    if (includesKeyword(lowerQuery, PRIVATE_DOCUMENT_KEYWORDS)) {
       return NextResponse.json({
-        result: "You can download or view Parsa Ahmadi's resume here:",
-        resumeUrl: "/Parsa-Ahmadi-S2026.pdf",
+        result:
+          "Ask Parsa can only share Parsa Ahmadi's public resume. Private application, transcript, and recommendation materials are not available through this site.",
+        resumeUrl: RESUME_URL,
+      })
+    }
+
+    if (includesKeyword(lowerQuery, RESUME_KEYWORDS)) {
+      return NextResponse.json({
+        result: "You can download or view Parsa Ahmadi's public resume here:",
+        resumeUrl: RESUME_URL,
       })
     }
 
     const apiKey = getGroqApiKey()
     if (!apiKey) {
-      return NextResponse.json({ error: "Ask Parsa AI is not configured on the server." }, { status: 500 })
+      return NextResponse.json(
+        { error: "Ask Parsa AI isn't available right now. Please try again later." },
+        { status: 503 },
+      )
     }
 
     const model = getGroqModel()

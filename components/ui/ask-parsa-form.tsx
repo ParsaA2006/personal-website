@@ -70,20 +70,19 @@ export default function AskParsaForm() {
           {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Search className="h-5 w-5" />}
         </Button>
       </div>
-      {resumeUrl ? (
+      {result || resumeUrl ? (
         <div className="whitespace-pre-line rounded bg-muted p-4 text-sm text-muted-foreground">
-          <a
-            href={resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-          >
-            Download Resume (PDF)
-          </a>
-        </div>
-      ) : result ? (
-        <div className="whitespace-pre-line rounded bg-muted p-4 text-sm text-muted-foreground">
-          {result}
+          {result ? <p>{result}</p> : null}
+          {resumeUrl ? (
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+            >
+              Download Resume (PDF)
+            </a>
+          ) : null}
         </div>
       ) : null}
       {error ? <div className="text-sm text-red-500">{error}</div> : null}

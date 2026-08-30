@@ -1,15 +1,19 @@
 # Parsa Ahmadi – Personal Website
 
-This is the source code for my personal website and portfolio, built with Next.js, React, and Tailwind CSS. The site showcases my projects, resume, experience, and an Ask Parsa AI assistant.
+This repository contains my personal portfolio website, built with Next.js, React, Tailwind CSS, and TypeScript. The site includes a homepage, About page, Projects pages, a Resume page, and an Ask Parsa AI assistant.
 
-## 🚀 Features
+## Features
 
-- Project portfolio with detailed pages
-- Resume page with PDF download
-- About page with skills and experience
-- Ask Parsa AI assistant with a resume shortcut
+- Personal portfolio with project detail pages
+- Resume page with a stable public PDF link
+- About page with centralized biography, education, skills, and experience content
+- Ask Parsa AI assistant powered by Groq and restricted to public portfolio data
 
-## 🛠️ Tech Stack
+## Content Source Of Truth
+
+Portfolio content is centralized in [`lib/portfolio-data.ts`](lib/portfolio-data.ts). Pages and Ask Parsa consume this data so experience, project, education, and resume information stay consistent across the site.
+
+## Tech Stack
 
 - [Next.js](https://nextjs.org/)
 - [React](https://react.dev/)
@@ -17,51 +21,34 @@ This is the source code for my personal website and portfolio, built with Next.j
 - [Lucide Icons](https://lucide.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
-## 📦 Getting Started
+## Getting Started
 
-1. **Clone the repository:**
+1. Clone the repository.
    ```bash
    git clone https://github.com/ParsaA2006/your-repo-name.git
    cd your-repo-name
    ```
-
-2. **Install dependencies:**
+2. Install dependencies.
    ```bash
    npm install
-   # or
-   yarn install
    ```
-
-3. **Set up environment variables:**
+3. Create `.env.local` and add your Groq configuration.
    ```bash
-   # Create .env.local and add:
    GROQ_API_KEY=your_groq_api_key
    GROQ_MODEL=openai/gpt-oss-120b
-   # Get your API key from: https://console.groq.com/
    ```
-   `GROQ_MODEL` is optional. If it is omitted, the site falls back to `openai/gpt-oss-120b`.
-
-4. **Run the development server:**
+   `GROQ_MODEL` is optional. If omitted, the site falls back to `openai/gpt-oss-120b`.
+4. Start the development server.
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
+5. Open [http://localhost:3000](http://localhost:3000).
 
-5. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
+## Resume
 
-## 📄 Resume
+The public resume is served from the stable path [`/Parsa-Ahmadi-Resume.pdf`](public/Parsa-Ahmadi-Resume.pdf).
 
-You can view and download my latest resume [here](public/Parsa-Ahmadi-S2026.pdf).
+## Notes
 
-## 🖼️ Screenshots
-
-![Profile](public/profile.jpg)
-
-## 📚 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-Feel free to reach out via [email](mailto:p3ahmadi@uwaterloo.ca) or [LinkedIn](https://linkedin.com/in/parsa-ahmadi2006) for collaboration or questions! 
+- Ask Parsa may only share the public resume PDF.
+- Private application or transcript materials are not part of the public website content.

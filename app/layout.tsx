@@ -1,16 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
+import { portfolioData } from "@/lib/portfolio-data"
+import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Parsa Ahmadi | Mechatronics Engineering",
-  description: "Personal website of Parsa Ahmadi, Mechatronics Engineering student at the University of Waterloo",
-    generator: 'v0.dev'
+  title: portfolioData.seo.defaultTitle,
+  description: portfolioData.seo.defaultDescription,
 }
 
 export default function RootLayout({

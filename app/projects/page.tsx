@@ -1,70 +1,71 @@
+import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { ExternalLink, Github } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
+import { Card, CardDescription, CardTitle } from "@/components/ui/card"
+import { getProjectHref, getProjectsForProjectsPage, portfolioData } from "@/lib/portfolio-data"
+
+const projects = getProjectsForProjectsPage()
+
+export const metadata: Metadata = {
+  title: portfolioData.seo.pages.projects.title,
+  description: portfolioData.seo.pages.projects.description,
+}
 
 export default function ProjectsPage() {
-  const projects = [
-    {
-      title: "Premier League Predictor",
-      description:
-        "A full-stack application that predicts Premier League match outcomes using machine learning. Features data scraping, feature engineering with XGBoost and scikit-learn, and containerized deployment with Docker and CI/CD pipelines.",
-      image: "/prem.jpg",
-      technologies: ["Python", "FastAPI", "React", "TypeScript", "Docker", "XGBoost", "ML"],
-      github: "https://github.com/ParsaA2006/premier-league-predictor",
-      readMore: "/projects/premier-league-predictor",
-    },
-    {
-      title: "Tic-Tac-Toe Solver Robot",
-      description:
-        "An autonomous LEGO EV3 robot that plays Tic-Tac-Toe, implementing color-sensor board detection and real-time game-state processing. Features calibrated multi-axis motor control for accurate move placement.",
-      image: "/tic-tac-tron.jpg",
-      technologies: ["C++", "RobotC", "Robotics", "Computer Vision"],
-      github: "https://github.com/ParsaA2006/Tic-Tac-Tron",
-      readMore: "/projects/tic-tac-tron",
-    },
-  ]
-
   return (
-    <div className="min-h-screen bg-black text-white py-12">
-      <div className="container max-w-4xl mx-auto space-y-10">
+    <div className="min-h-screen bg-black py-12 text-white">
+      <div className="container mx-auto max-w-4xl space-y-10">
         <div className="space-y-2 text-center">
-          <h1 className="text-4xl font-extrabold mb-2">Projects</h1>
-          <p className="text-gray-300 text-lg">A collection of my work spanning software and robotics. Each project represents a unique challenge and solution.</p>
+          <h1 className="mb-2 text-4xl font-extrabold">Projects</h1>
+          <p className="text-lg text-gray-300">
+            A collection of my work across software engineering, machine learning, and robotics.
+          </p>
         </div>
 
         <div className="flex flex-col gap-10">
-          {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden bg-gray-900 border border-gray-800 rounded-2xl shadow-lg flex flex-col md:flex-row">
-              <div className="md:w-1/3 w-full aspect-video md:aspect-auto overflow-hidden flex items-center justify-center bg-gray-800">
-                <img
-                  src={project.image || "/placeholder.svg"}
+          {projects.map((project) => (
+            <Card
+              key={project.slug}
+              className="flex flex-col overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 shadow-lg md:flex-row"
+            >
+              <div className="flex aspect-video w-full items-center justify-center overflow-hidden bg-gray-800 md:w-1/3 md:aspect-auto">
+                <Image
+                  src={project.image}
                   alt={project.title}
-                  className="object-cover w-full h-full"
+                  width={480}
+                  height={320}
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <div className="flex-1 flex flex-col justify-between p-6">
+              <div className="flex flex-1 flex-col justify-between p-6">
                 <div>
-                  <CardTitle className="text-white text-2xl font-bold mb-2">{project.title}</CardTitle>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.technologies.map((tech, i) => (
-                      <Badge key={i} variant="secondary">
-                        {tech}
+                  <CardTitle className="mb-2 text-2xl font-bold text-white">{project.title}</CardTitle>
+                  <p className="mb-2 text-sm text-muted-foreground">{project.period}</p>
+                  <div className="mb-3 flex flex-wrap gap-2">
+                    {project.technologies.map((technology) => (
+                      <Badge key={technology} variant="secondary">
+                        {technology}
                       </Badge>
                     ))}
                   </div>
-                  <CardDescription className="text-base text-gray-300 mb-4">{project.description}</CardDescription>
+                  <CardDescription className="mb-4 text-base text-gray-300">
+                    {project.shortDescription}
+                  </CardDescription>
                 </div>
-                <div className="flex gap-4 mt-4">
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href={project.github}>
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </Link>
-                  </Button>
+                <div className="mt-4 flex gap-4">
+                  {project.repositoryUrl ? (
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" />
+                        Code
+                      </Link>
+                    </Button>
+                  ) : null}
                   <Button size="sm" asChild>
-                    <Link href={project.readMore}>
+                    <Link href={getProjectHref(project.slug)}>
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Read More
                     </Link>
