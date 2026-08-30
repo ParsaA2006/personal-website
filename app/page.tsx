@@ -1,11 +1,7 @@
-"use client"
-
 import Link from "next/link"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Search } from "lucide-react"
-import SearchBar from "@/components/ui/search-bar"
+import { ArrowRight } from "lucide-react"
+import AskParsaForm from "@/components/ui/ask-parsa-form"
 
 const projects = [
   {
@@ -21,51 +17,13 @@ const projects = [
 ]
 
 export default function Home() {
-  const [search, setSearch] = useState("");
-  const router = useRouter();
-
-  const normalized = search.trim().toLowerCase();
-  const NAVIGATION = [
-    { label: "home", path: "/" },
-    { label: "about", path: "/about" },
-    { label: "projects", path: "/projects" },
-    { label: "resume", path: "/resume" },
-  ];
-  const navMatch = NAVIGATION.find((nav) => normalized === nav.label);
-  if (navMatch) {
-    router.push(navMatch.path);
-  }
-
-  const handleGrokSearch = async (query: string) => {
-    const res = await fetch("/api/grok", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.error || "Failed to fetch answer");
-    }
-    return data;
-  };
-
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation Bar */}
-      <header className="w-full border-b border-gray-800 bg-black/80 backdrop-blur sticky top-0 z-30">
-        <nav className="container flex items-center justify-between py-4">
-          <div className="text-2xl font-bold tracking-tight">Parsa Ahmadi</div>
-          <div className="flex gap-6 text-base font-medium">
-            <Link href="/about" className="hover:text-blue-400 transition">About</Link>
-            <Link href="/projects" className="hover:text-blue-400 transition">Projects</Link>
-            <Link href="/resume" className="hover:text-blue-400 transition">Resume</Link>
-          </div>
-        </nav>
-        {/* New Search Bar */}
+      <section className="border-b border-gray-800 bg-black/80">
         <div className="container py-4">
-          <SearchBar onSearch={handleGrokSearch} />
+          <AskParsaForm />
         </div>
-      </header>
+      </section>
 
       {/* Hero Section */}
       <section className="container flex flex-col md:flex-row items-center gap-16 py-20 md:py-32">

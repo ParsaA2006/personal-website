@@ -1,14 +1,13 @@
 # Parsa Ahmadi – Personal Website
 
-This is the source code for my personal website and portfolio, built with Next.js, React, and Tailwind CSS. The site showcases my projects, resume, blog posts, and more.
+This is the source code for my personal website and portfolio, built with Next.js, React, and Tailwind CSS. The site showcases my projects, resume, experience, and an Ask Parsa AI assistant.
 
 ## 🚀 Features
 
 - Project portfolio with detailed pages
-- Blog section with personal and technical posts
 - Resume page with PDF download
 - About page with skills and experience
-- Smart search bar for navigation and content
+- Ask Parsa AI assistant with a resume shortcut
 
 ## 🛠️ Tech Stack
 
@@ -35,10 +34,12 @@ This is the source code for my personal website and portfolio, built with Next.j
 
 3. **Set up environment variables:**
    ```bash
-   cp .env.local.example .env.local
-   # Then edit .env.local and add your GROK_API_KEY
+   # Create .env.local and add:
+   GROQ_API_KEY=your_groq_api_key
+   GROQ_MODEL=openai/gpt-oss-120b
    # Get your API key from: https://console.groq.com/
    ```
+   `GROQ_MODEL` is optional. If it is omitted, the site falls back to `openai/gpt-oss-120b`.
 
 4. **Run the development server:**
    ```bash
@@ -51,7 +52,7 @@ This is the source code for my personal website and portfolio, built with Next.j
 
 ## 📄 Resume
 
-You can view and download my latest resume [here](public/Parsa_Ahmadi_Resume&Transcript_Fall%2025.pdf).
+You can view and download my latest resume [here](public/Parsa-Ahmadi-S2026.pdf).
 
 ## 🖼️ Screenshots
 
