@@ -44,9 +44,119 @@ export type Project = {
   resumeHighlights: string[]
 }
 
+export type AcademicCourse = {
+  code: string
+  name: string
+  grade?: number
+}
+
+export type AcademicTermStatus = "completed" | "current"
+
+export type AcademicTerm = {
+  id: string
+  term: string
+  season: string
+  program: string
+  status: AcademicTermStatus
+  average?: number
+  standing?: string
+  notes?: string[]
+  courses: AcademicCourse[]
+}
+
+export type TimelineEventType = "education" | "academic-term" | "work" | "activity"
+
+export type TimelineEventLane = "main" | "parallel"
+
+export type TimelineEvent = {
+  id: string
+  type: TimelineEventType
+  lane: TimelineEventLane
+  sortOrder: number
+  chapter: string
+  title: string
+  subtitle: string
+  dateLabel: string
+  description: string
+  location?: string
+  evaluation?: string
+  relatedTermId?: string
+}
+
+export type JourneyPreviewYear = {
+  year: string
+  entries: string[]
+}
+
+export type JourneyPhoto = {
+  src: string
+  alt: string
+  caption: string
+}
+
+export type PortfolioData = {
+  profile: {
+    name: string
+    headline: string
+    subheadline: string
+    homeSummary: string
+    aboutParagraphs: string[]
+    links: PortfolioLink[]
+  }
+  seo: {
+    defaultTitle: string
+    defaultDescription: string
+    pages: {
+      about: {
+        title: string
+        description: string
+      }
+      journey: {
+        title: string
+        description: string
+      }
+      projects: {
+        title: string
+        description: string
+      }
+      resume: {
+        title: string
+        description: string
+      }
+    }
+  }
+  documents: {
+    resume: {
+      label: string
+      href: string
+    }
+  }
+  education: {
+    school: string
+    degree: string
+    minor: string
+    expectedGraduation: string
+    location: string
+    gpa: string
+    coursework: string[]
+  }
+  journey: {
+    path: string
+    title: string
+    introduction: string
+    photo: JourneyPhoto
+    previewYears: JourneyPreviewYear[]
+  }
+  academicTerms: AcademicTerm[]
+  timelineEvents: TimelineEvent[]
+  skills: SkillGroup[]
+  experiences: Experience[]
+  projects: Project[]
+}
+
 export const PUBLIC_RESUME_URL = "/Parsa-Ahmadi-Resume.pdf"
 
-export const portfolioData = {
+export const portfolioData: PortfolioData = {
   profile: {
     name: "Parsa Ahmadi",
     headline: "Mechatronics Engineering Student at the University of Waterloo",
@@ -63,7 +173,7 @@ export const portfolioData = {
       { label: "LinkedIn", href: "https://linkedin.com/in/parsa-ahmadi2006", external: true },
       { label: "GitHub", href: "https://github.com/ParsaA2006", external: true },
       { label: "Personal Website", href: "/" },
-    ] satisfies PortfolioLink[],
+    ],
   },
   seo: {
     defaultTitle: "Parsa Ahmadi | Software Engineer & Mechatronics Student",
@@ -74,6 +184,11 @@ export const portfolioData = {
         title: "About | Parsa Ahmadi",
         description:
           "Learn about Parsa Ahmadi's background, education, technical skills, and software engineering experience.",
+      },
+      journey: {
+        title: "Journey | Parsa Ahmadi",
+        description:
+          "Follow Parsa Ahmadi's academic and professional chronology across Waterloo terms, co-ops, parallel engineering work, and public grade summaries.",
       },
       projects: {
         title: "Projects | Parsa Ahmadi",
@@ -102,6 +217,251 @@ export const portfolioData = {
     gpa: "3.9 / 4.0",
     coursework: ["Data Structures and Algorithms", "Digital Logic"],
   },
+  journey: {
+    path: "/journey",
+    title: "Journey",
+    introduction:
+      "A public field record of school, Waterloo terms, co-ops, and the parallel engineering work that ran alongside them.",
+    photo: {
+      src: "/waterloo-journey.jpg",
+      alt: "Parsa with friends and classmates at the University of Waterloo.",
+      caption: "Waterloo / classmates / favorite photo / 2026",
+    },
+    previewYears: [
+      { year: "2024", entries: ["Waterloo / 1A"] },
+      { year: "2025", entries: ["Co-op 1 / Linamar", "1B + Neurosnap", "Co-op 2 / BTNX", "WARG"] },
+      { year: "2026", entries: ["2A / Waterloo", "Co-op 3 / SPS Commerce", "2B / current term"] },
+    ],
+  },
+  academicTerms: [
+    {
+      id: "uw-1a",
+      term: "1A",
+      season: "Fall 2024",
+      program: "Mechatronics Engineering",
+      status: "completed",
+      average: 94.64,
+      standing: "Excellent Standing",
+      notes: ["GENE 119 is present but does not show a numeric grade."],
+      courses: [
+        { code: "CHE 102", name: "Chemistry for Engineers", grade: 90 },
+        { code: "MTE 121", name: "Digital Computation", grade: 91 },
+        { code: "MTE 100", name: "Mechatronics Engineering", grade: 95 },
+        { code: "MATH 116", name: "Calculus 1 (Eng)", grade: 100 },
+        { code: "MATH 115", name: "Linear Algebra (Eng)", grade: 97 },
+      ],
+    },
+    {
+      id: "uw-1b",
+      term: "1B",
+      season: "Spring 2025",
+      program: "Mechatronics Engineering",
+      status: "completed",
+      average: 90.91,
+      standing: "Excellent Standing",
+      notes: ["MTE 100B and GENE 120 are present but do not show numeric grades."],
+      courses: [
+        { code: "MATH 118", name: "Calculus 2 (Eng)", grade: 89 },
+        { code: "MTE 111", name: "Material Structure & Properties", grade: 92 },
+        { code: "MTE 140", name: "Algorithms & Data Structures", grade: 93 },
+        { code: "MTE 120", name: "Circuits", grade: 88 },
+        { code: "MTE 119", name: "Statics", grade: 94 },
+      ],
+    },
+    {
+      id: "uw-2a",
+      term: "2A",
+      season: "Winter 2026",
+      program: "Mechatronics Engineering",
+      status: "completed",
+      average: 89.83,
+      standing: "Excellent Standing",
+      notes: ["MTE 200A Seminar is present without a numeric grade."],
+      courses: [
+        {
+          code: "MSE 442",
+          name: "Impact of Information Systems on Organizations & Society",
+          grade: 85,
+        },
+        { code: "MTE 182", name: "Physics 2: Dynamics", grade: 90 },
+        {
+          code: "MTE 201",
+          name: "Experimental Measurement & Statistical Analysis",
+          grade: 96,
+        },
+        { code: "MTE 202", name: "Ordinary Differential Equations", grade: 81 },
+        { code: "MTE 219", name: "Mechanics of Deformable Solids", grade: 99 },
+        { code: "MTE 262", name: "Introduction to Digital Logic", grade: 88 },
+      ],
+    },
+    {
+      id: "uw-2b",
+      term: "2B",
+      season: "Fall 2026",
+      program: "Mechatronics Engineering",
+      status: "current",
+      notes: ["Current or upcoming term. There are no grades yet."],
+      courses: [
+        { code: "MTE 200B", name: "Seminar" },
+        { code: "MTE 203", name: "Advanced Calculus" },
+        { code: "MTE 204", name: "Numerical Methods" },
+        { code: "MTE 220", name: "Sensors & Instrumentation" },
+        { code: "MTE 241", name: "Computer Structures & Real-Time Systems" },
+        { code: "MTE 252", name: "Linear Systems & Signals" },
+      ],
+    },
+  ],
+  timelineEvents: [
+    {
+      id: "steelesview",
+      type: "education",
+      lane: "main",
+      sortOrder: 1,
+      chapter: "Foundation",
+      title: "Steelesview",
+      subtitle: "Elementary school",
+      dateLabel: "Early education",
+      description: "At the time I probably could not wait to move to the next step. Looking back, elementary school was a pretty good setup.",
+    },
+    {
+      id: "zion",
+      type: "education",
+      lane: "main",
+      sortOrder: 2,
+      chapter: "Foundation",
+      title: "Zion",
+      subtitle: "Middle school",
+      dateLabel: "Early education",
+      description: "Back when getting to high school felt like the main objective. In retrospect, middle school was a pretty decent deal.",
+    },
+    {
+      id: "ay-jackson",
+      type: "education",
+      lane: "main",
+      sortOrder: 3,
+      chapter: "Foundation",
+      title: "A.Y. Jackson",
+      subtitle: "High school",
+      dateLabel: "Pre-Waterloo",
+      description: "By then the only plan was getting to Waterloo as fast as possible. Looking back, high school was actually a good chapter too.",
+    },
+    {
+      id: "waterloo-1a",
+      type: "academic-term",
+      lane: "main",
+      sortOrder: 4,
+      chapter: "2024",
+      title: "1A Mechatronics Engineering",
+      subtitle: "University of Waterloo",
+      dateLabel: "Fall 2024",
+      description: "First Waterloo term with a 94.64 average and Excellent Standing.",
+      location: "Waterloo, ON",
+      relatedTermId: "uw-1a",
+    },
+    {
+      id: "linamar",
+      type: "work",
+      lane: "main",
+      sortOrder: 5,
+      chapter: "2025",
+      title: "Co-op 1 — Linamar",
+      subtitle: "Mechanical Engineer Intern",
+      dateLabel: "Jan – Apr 2025",
+      description: "Manufacturing engineering, FMEA transition work, and production-improvement analysis.",
+      location: "Guelph, ON",
+      evaluation: "Excellent",
+    },
+    {
+      id: "waterloo-1b",
+      type: "academic-term",
+      lane: "main",
+      sortOrder: 6,
+      chapter: "2025",
+      title: "1B Mechatronics Engineering",
+      subtitle: "University of Waterloo",
+      dateLabel: "Spring 2025",
+      description: "Second Waterloo term with a 90.91 average and Excellent Standing.",
+      location: "Waterloo, ON",
+      relatedTermId: "uw-1b",
+    },
+    {
+      id: "neurosnap",
+      type: "activity",
+      lane: "parallel",
+      sortOrder: 7,
+      chapter: "2025",
+      title: "Neurosnap",
+      subtitle: "Software Engineering Intern",
+      dateLabel: "May – Aug 2025",
+      description: "Parallel software engineering work in AI-driven research tooling during the 2025 period.",
+      location: "Toronto, ON",
+      relatedTermId: "uw-1b",
+    },
+    {
+      id: "warg",
+      type: "activity",
+      lane: "parallel",
+      sortOrder: 8,
+      chapter: "2025",
+      title: "WARG",
+      subtitle: "Autonomy Team Member",
+      dateLabel: "May – Dec 2025",
+      description: "Computer vision and telemetry work for aerial robotics running alongside academic and co-op chapters.",
+      location: "Waterloo, ON",
+    },
+    {
+      id: "btnx",
+      type: "work",
+      lane: "main",
+      sortOrder: 9,
+      chapter: "2025",
+      title: "Co-op 2 — BTNX",
+      subtitle: "Software Engineering Intern",
+      dateLabel: "Sep – Dec 2025",
+      description: "Full-stack ERP development, backend APIs, and AI-assisted tooling.",
+      location: "Toronto, ON",
+      evaluation: "Outstanding",
+    },
+    {
+      id: "waterloo-2a",
+      type: "academic-term",
+      lane: "main",
+      sortOrder: 10,
+      chapter: "2026",
+      title: "2A Mechatronics Engineering",
+      subtitle: "University of Waterloo",
+      dateLabel: "Winter 2026",
+      description: "Third completed Waterloo term with an 89.83 average and Excellent Standing.",
+      location: "Waterloo, ON",
+      relatedTermId: "uw-2a",
+    },
+    {
+      id: "sps-commerce",
+      type: "work",
+      lane: "main",
+      sortOrder: 11,
+      chapter: "2026",
+      title: "Co-op 3 — SPS Commerce",
+      subtitle: "Software Engineer Co-op — Data Pipeline",
+      dateLabel: "May – Aug 2026",
+      description: "Cloud data platform tooling, CI/CD automation, and production pipeline engineering.",
+      location: "Toronto, ON",
+      evaluation: "Outstanding",
+    },
+    {
+      id: "waterloo-2b",
+      type: "academic-term",
+      lane: "main",
+      sortOrder: 12,
+      chapter: "2026",
+      title: "2B Mechatronics Engineering",
+      subtitle: "University of Waterloo",
+      dateLabel: "Fall 2026",
+      description: "Current or upcoming term. Courses are set, but there are no grades yet.",
+      location: "Waterloo, ON",
+      relatedTermId: "uw-2b",
+    },
+  ],
   skills: [
     {
       label: "Languages",
@@ -151,7 +511,7 @@ export const portfolioData = {
         "PyQt",
       ],
     },
-  ] satisfies SkillGroup[],
+  ],
   experiences: [
     {
       id: "sps-commerce",
@@ -197,7 +557,20 @@ export const portfolioData = {
         "Built an AI-powered conference tracking module with Blazor and Python, training OCR and NLP models with PyTorch to auto-populate attendee profiles with 96% accuracy.",
         "Developed Python scripts to train and deploy an XGBoost classification model for diagnostic strips, achieving 99% strip reader accuracy.",
       ],
-      technologies: ["React", "TypeScript", ".NET", "ASP.NET", "C#", "SQL Server", "Redis", "Blazor", "Python", "PyTorch", "XGBoost", "Entity Framework"],
+      technologies: [
+        "React",
+        "TypeScript",
+        ".NET",
+        "ASP.NET",
+        "C#",
+        "SQL Server",
+        "Redis",
+        "Blazor",
+        "Python",
+        "PyTorch",
+        "XGBoost",
+        "Entity Framework",
+      ],
       visibility: { about: true, resume: true, askParsa: true },
     },
     {
@@ -250,7 +623,7 @@ export const portfolioData = {
       technologies: ["Manufacturing", "SolidWorks", "FMEA", "Process Improvement", "Data Analysis"],
       visibility: { about: true, resume: false, askParsa: true },
     },
-  ] satisfies Experience[],
+  ],
   projects: [
     {
       slug: "premier-league-predictor",
@@ -287,7 +660,7 @@ export const portfolioData = {
       showOnResume: true,
       resumeHighlights: [
         "Designed and programmed an autonomous Tic-Tac-Toe robot that interprets the board state and executes moves using RobotC, sensors, and custom logic.",
-        "Built calibrated movement and control logic for consistent move placement across the 3×3 grid.",
+        "Built calibrated movement and control logic for consistent move placement across the 3 x 3 grid.",
       ],
     },
     {
@@ -308,10 +681,10 @@ export const portfolioData = {
         "Built the backend with C# and .NET, implementing authentication, role-based access control, and SQL-backed data storage.",
       ],
     },
-  ] satisfies Project[],
-} as const
+  ],
+}
 
-function uniqueItems(items: string[]) {
+function uniqueItems(items: readonly string[]) {
   return [...new Set(items)]
 }
 
@@ -357,6 +730,22 @@ export function getExperiencesForResume() {
   return portfolioData.experiences.filter((experience) => experience.visibility.resume)
 }
 
+export function getAcademicTerms() {
+  return portfolioData.academicTerms
+}
+
+export function getTimelineEvents() {
+  return [...portfolioData.timelineEvents].sort((left, right) => left.sortOrder - right.sortOrder)
+}
+
+export function getJourneyPreviewYears() {
+  return portfolioData.journey.previewYears
+}
+
+export function getJourneyPath() {
+  return portfolioData.journey.path
+}
+
 export function getPublicSkillItems() {
   return uniqueItems(portfolioData.skills.flatMap((group) => group.items))
 }
@@ -383,6 +772,30 @@ export function getAskParsaContext() {
     .map((group) => `- ${group.label}: ${group.items.join(", ")}.`)
     .join("\n")
 
+  const academicTermLines = portfolioData.academicTerms
+    .map((term) => {
+      const courseLines = term.courses
+        .map((course) => `${course.code}${typeof course.grade === "number" ? ` ${course.grade}` : ""}`)
+        .join(", ")
+      const summaryParts = [
+        `${term.term} (${term.season})`,
+        term.average ? `Term average ${term.average}.` : "No grades yet.",
+        term.standing ? `Standing: ${term.standing}.` : "",
+        courseLines ? `Courses: ${courseLines}.` : "",
+        term.notes?.length ? `Notes: ${term.notes.join(" ")}` : "",
+      ].filter(Boolean)
+
+      return `- ${summaryParts.join(" ")}`
+    })
+    .join("\n")
+
+  const timelineLines = getTimelineEvents()
+    .map(
+      (event) =>
+        `- ${event.dateLabel}: ${event.title} (${event.subtitle}). ${event.description}${event.evaluation ? ` Evaluation: ${event.evaluation}.` : ""}`,
+    )
+    .join("\n")
+
   return `
 You are Ask Parsa, the AI assistant on Parsa Ahmadi's personal website.
 
@@ -403,6 +816,12 @@ Education:
 - Expected graduation: ${portfolioData.education.expectedGraduation}
 - GPA: ${portfolioData.education.gpa}
 - Selected coursework: ${portfolioData.education.coursework.join(", ")}
+
+Academic terms:
+${academicTermLines}
+
+Journey chronology:
+${timelineLines}
 
 Skills:
 ${skillLines}
