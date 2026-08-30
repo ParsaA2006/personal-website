@@ -1,165 +1,236 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Download, Mail } from "lucide-react"
+import type { Metadata } from "next"
 import Link from "next/link"
+import { ArrowRight, Download } from "lucide-react"
+import Reveal from "@/components/home/reveal"
+import SectionRail from "@/components/site/section-rail"
+import SkillsRows from "@/components/site/skills-rows"
+import {
+  getExperiencesForResume,
+  getProjectsForResume,
+  getPublicResumeHref,
+  portfolioData,
+} from "@/lib/portfolio-data"
+
+const experiences = getExperiencesForResume()
+const projects = getProjectsForResume()
+const resumeHref = getPublicResumeHref()
+
+export const metadata: Metadata = {
+  title: portfolioData.seo.pages.resume.title,
+  description: portfolioData.seo.pages.resume.description,
+}
 
 export default function ResumePage() {
+  const emailLink = portfolioData.profile.links.find((link) => link.label === "Email")
+  const externalLinks = portfolioData.profile.links.filter((link) => link.label !== "Email" && link.label !== "Personal Website")
+
   return (
-    <div className="container py-12 max-w-3xl mx-auto">
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Parsa Ahmadi</h1>
-          <p className="text-muted-foreground">Resume</p>
-        </div>
-        <Button asChild className="w-full sm:w-auto">
-          <a href="/Parsa-Ahmadi-S2026.pdf" target="_blank" rel="noopener noreferrer">
-            <Download className="mr-2 h-4 w-4" />
-            Download PDF
-          </a>
-        </Button>
-      </div>
+    <div className="site-shell min-h-screen text-[var(--carbon)]">
+      <main className="relative z-[1] pb-20 md:pb-28">
+        <section className="border-b border-[color:var(--rule-neutral)]">
+          <div className="mx-auto grid max-w-[1440px] gap-y-16 px-5 pb-16 pt-12 sm:px-7 md:pb-20 xl:grid-cols-12 xl:gap-x-8 xl:px-12 xl:pb-24 xl:pt-16">
+            <div className="xl:col-span-2">
+              <SectionRail
+                index="01"
+                title="Resume"
+                note="The same material, just easier to scan here."
+              />
+            </div>
 
-      <div className="space-y-8">
-        {/* Contact & Links */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Contact & Links</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-4 items-center">
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-muted-foreground" />
-              <span>p3ahmadi@uwaterloo.ca</span>
-            </div>
-            <Link href="https://linkedin.com/in/parsa-ahmadi2006" className="text-blue-500 hover:underline" target="_blank">LinkedIn</Link>
-            <Link href="https://github.com/ParsaA2006" className="text-blue-500 hover:underline" target="_blank">GitHub</Link>
-            <Link href="/" className="text-blue-500 hover:underline">Personal Website</Link>
-          </CardContent>
-        </Card>
+            <div className="grid gap-10 xl:col-span-10">
+              <Reveal className="grid gap-8 xl:grid-cols-12 xl:gap-x-8">
+                <div className="xl:col-span-8">
+                  <p className="annotation-text text-[var(--signal-copper)]">Resume / Sunday, August 30, 2026</p>
+                  <h1 className="type-display-section mt-4 max-w-[9ch] text-[var(--technical-green)]">
+                    {portfolioData.profile.name}
+                  </h1>
+                  <p className="mt-6 font-display text-[clamp(1.35rem,2.2vw,2rem)] uppercase tracking-[-0.04em] text-[var(--carbon-soft)]">
+                    Software + AI + Mechatronics
+                  </p>
+                </div>
 
-        {/* Education */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Education</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col sm:flex-row sm:justify-between">
-              <div>
-                <div className="font-semibold">University of Waterloo</div>
-                <div className="italic">Bachelor of Applied Science in Mechatronics Engineering | Minor: Artificial Intelligence</div>
-                <div className="text-sm text-muted-foreground mt-1">Coursework: Data Structures and Algorithms, Digital Logic</div>
-              </div>
-              <div className="text-sm text-muted-foreground sm:text-right">Expected Graduation: Apr 2029<br />Waterloo, ON</div>
-            </div>
-            <div className="text-sm text-muted-foreground mt-2">GPA: 4.0/4.0</div>
-          </CardContent>
-        </Card>
+                <div className="grid gap-4 border-t border-[color:var(--rule-neutral)] pt-5 xl:col-span-4 xl:border-t-0 xl:pl-6 xl:pt-2">
+                  <p className="text-[1rem] leading-7 text-[var(--carbon-soft)]">
+                    A reading-first version of the resume, with direct links kept visible and the PDF still available for
+                    the formal handoff.
+                  </p>
+                  <a href={resumeHref} target="_blank" rel="noopener noreferrer" className="field-link w-fit text-[var(--technical-green)]">
+                    Download PDF
+                    <Download className="h-4 w-4" />
+                  </a>
+                </div>
+              </Reveal>
 
-        {/* Technical Skills */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Technical Skills</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div>
-              <span className="font-semibold">Languages:</span> Python, TypeScript, JavaScript, C, C++, C#, Java, SQL, HTML/CSS
-            </div>
-            <div>
-              <span className="font-semibold">Developer Tools:</span> Azure, Git, AWS, Docker, Postman, PostgreSQL, SQL Server, MySQL, Redis, Jupyter Notebook, Jira
-            </div>
-            <div>
-              <span className="font-semibold">Frameworks/Libraries:</span> React, Next.js, Angular, Blazor, ASP.NET, .NET, Entity Framework, Node.js, Express, PyTorch, TensorFlow, scikit-learn, XGBoost, NumPy, Pandas, OpenCV, ROS2, PyQt
-            </div>
-          </CardContent>
-        </Card>
+              <Reveal className="grid gap-8 border-t border-[color:var(--rule-neutral)] pt-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(18rem,0.95fr)]">
+                <div className="grid gap-4">
+                  {emailLink ? (
+                    <div>
+                      <p className="annotation-text text-[var(--signal-copper)]">Direct contact</p>
+                      <Link
+                        href={emailLink.href}
+                        className="mt-4 block break-words font-display text-[clamp(1.45rem,2.8vw,2.35rem)] uppercase tracking-[-0.04em] text-[var(--technical-green)]"
+                      >
+                        {emailLink.display}
+                      </Link>
+                    </div>
+                  ) : null}
+                </div>
 
-        {/* Experience */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Experience</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* BTNX */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:justify-between">
-                <div className="font-semibold">BTNX</div>
-                <div className="text-sm text-muted-foreground">Sep 2025 – Dec 2025 | Toronto, ON</div>
-              </div>
-              <div className="italic text-sm">Software Engineering Intern</div>
-              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Developed a full-stack ERP SaaS platform using React, Typescript, and .NET, building 30+ end-to-end pages and designing the normalized SQL Server schema, serving 1,000+ active users</li>
-                <li>Reduced load times by 30% across key modules through optimizing LINQ queries in C#, implementing async/await validation, and improving SQL performance by introducing table indexes, stored procedures, and a Redis lookup cache</li>
-                <li>Engineered scalable RESTful APIs with ASP.NET and Entity Framework to handle 5k+ daily requests, reducing downtime by 20% and implementing integrations with Microsoft Graph and Amazon SP API</li>
-                <li>Built an AI-powered conference tracking module with Blazor and Python, training OCR and NLP models using PyTorch to extract business card data and auto-populate attendee profiles with 96% accuracy</li>
-                <li>Developed Python scripts to train and deploy an XGBoost classification model for diagnostic strips with ONNX Runtime inference integrated into a Blazor interface, achieving 99% strip reader accuracy</li>
-              </ul>
+                <div className="grid gap-3 border-t border-[color:var(--rule-neutral)] pt-5 lg:border-t-0 lg:pl-10 lg:pt-0">
+                  {externalLinks.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
+                      className="field-link w-fit text-[var(--carbon)]"
+                    >
+                      {link.label}
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ))}
+                </div>
+              </Reveal>
             </div>
-            {/* Neurosnap */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:justify-between">
-                <div className="font-semibold">Neurosnap</div>
-                <div className="text-sm text-muted-foreground">May 2025 – Aug 2025 | Toronto, ON</div>
-              </div>
-              <div className="italic text-sm">Software Engineering Intern</div>
-              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Built responsive research dashboards for AI-driven protein and enzyme analysis using TypeScript and React, reducing dashboard render time by 35% for large bioinformatics datasets</li>
-                <li>Built backend services in Python using Flask, integrating ML pipelines for molecular docking and sequence analysis, and reducing processing errors by more than 25%</li>
-                <li>Designed PostgreSQL schemas and indexed queries for storing protein structures, variant predictions, and experiment results, improving query performance by nearly 50%</li>
-                <li>Integrated RESTful APIs with Python and Flask for NeuroFold model inference and containerized batch prediction pipelines with Docker, automating research and saving laboratories $20000+ annually</li>
-              </ul>
-            </div>
-            {/* WARG */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:justify-between">
-                <div className="font-semibold">Waterloo Aerial Robotics Group (WARG)</div>
-                <div className="text-sm text-muted-foreground">May 2025 – Dec 2025 | Waterloo, ON</div>
-              </div>
-              <div className="italic text-sm">Autonomy Team Member</div>
-              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Developed computer vision modules for landing pad detection and obstacle avoidance, increasing detection accuracy to 90% by training ML models with OpenCV, TensorFlow, and deploying inference pipelines in C++ within ROS2</li>
-                <li>Implemented real-time telemetry features in the IMACS 2.0 ground-station, reducing communication latency from 150 ms to 90 ms by optimizing asynchronous data handling using Python, PyQt, and ROS2</li>
-              </ul>
-            </div>
-            {/* Linamar */}
-            <div>
-              <div className="flex flex-col sm:flex-row sm:justify-between">
-                <div className="font-semibold">Linamar Corporation</div>
-                <div className="text-sm text-muted-foreground">Jan 2025 – Apr 2025 | Guelph, ON</div>
-              </div>
-              <div className="italic text-sm">Mechanical Engineer Intern</div>
-              <ul className="mt-1 list-disc list-inside text-sm space-y-1">
-                <li>Reviewed and implemented Engineering Change Notices (ECNs), conducted capability tests, and updated process documentation to improve accuracy and efficiency.</li>
-                <li>Led transition to AIAG-VDA FMEA format for major clients, ensuring compliance with industry standards.</li>
-                <li>Automated a manual operation, saving $40,000+ annually; designed SolidWorks models, reducing part costs by up to 40%.</li>
-                <li>Redesigned machine work instructions, improving efficiency by 20%.</li>
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
-        {/* Projects */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Projects</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <div className="font-semibold">Premier League Predictor | Python, FastAPI, React, TypeScript, Docker</div>
-              <ul className="list-disc list-inside text-sm ml-4">
-                <li>Created a model to predict match outcomes, integrating data scraping with feature engineering and machine learning using XGBoost and scikit-learn</li>
-                <li>Containerized the full-stack application using Docker with multi-stage builds and integrated CI/CD pipelines, enabling automated testing, consistent deployments across environments, and reducing setup time by over 80%</li>
-              </ul>
+        <section className="border-b border-[color:var(--rule-neutral)]">
+          <div className="mx-auto grid max-w-[1440px] gap-y-16 px-5 py-16 sm:px-7 md:py-20 xl:grid-cols-12 xl:gap-x-8 xl:px-12 xl:py-24">
+            <div className="xl:col-span-2">
+              <SectionRail index="02" title="Education" note="The academic layer underneath the work." />
             </div>
-            <div>
-              <div className="font-semibold">Tic-Tac-Toe Solver Robot | C++, RobotC</div>
-              <ul className="list-disc list-inside text-sm ml-4">
-                <li>Programmed an autonomous LEGO EV3 Tic-Tac-Toe robot in C++, implementing color-sensor board detection and real-time game-state processing to interpret human moves</li>
-                <li>Integrated and calibrated the EV3's multi-axis motors by mapping grid coordinates to calibrated motor rotation angles, ensuring accurate and consistent move placement across the 3×3 grid</li>
-              </ul>
+
+            <div className="grid gap-10 xl:col-span-10">
+              <Reveal className="grid gap-8 border-t border-[color:var(--rule-neutral)] pt-8 xl:grid-cols-12 xl:gap-x-8">
+                <div className="xl:col-span-7">
+                  <p className="font-display text-[clamp(2rem,3.6vw,3.6rem)] uppercase leading-[0.94] tracking-[-0.05em] text-[var(--technical-green)]">
+                    {portfolioData.education.school}
+                  </p>
+                  <p className="mt-4 text-[1rem] leading-7 text-[var(--carbon-soft)]">
+                    {portfolioData.education.degree} / Minor in {portfolioData.education.minor}
+                  </p>
+                </div>
+
+                <div className="grid gap-4 annotation-note xl:col-span-5 xl:pl-6">
+                  <div className="flex items-start justify-between gap-6">
+                    <span>Expected graduation</span>
+                    <span className="text-right text-[var(--carbon)]">{portfolioData.education.expectedGraduation}</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-6">
+                    <span>Location</span>
+                    <span className="text-right text-[var(--carbon)]">{portfolioData.education.location}</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-6">
+                    <span>GPA</span>
+                    <span className="text-right text-[var(--carbon)]">{portfolioData.education.gpa}</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-6">
+                    <span>Selected coursework</span>
+                    <span className="max-w-[18ch] text-right text-[var(--carbon)]">
+                      {portfolioData.education.coursework.join(", ")}
+                    </span>
+                  </div>
+                </div>
+              </Reveal>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[color:var(--rule-neutral)]">
+          <div className="mx-auto grid max-w-[1440px] gap-y-16 px-5 py-16 sm:px-7 md:py-20 xl:grid-cols-12 xl:gap-x-8 xl:px-12 xl:py-24">
+            <div className="xl:col-span-2">
+              <SectionRail index="03" title="Skills" note="A simple inventory, without the badge wall." />
+            </div>
+
+            <div className="grid gap-5 xl:col-span-10">
+              <SkillsRows groups={portfolioData.skills} />
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[color:var(--rule-neutral)]">
+          <div className="mx-auto grid max-w-[1440px] gap-y-16 px-5 py-16 sm:px-7 md:py-20 xl:grid-cols-12 xl:gap-x-8 xl:px-12 xl:py-24">
+            <div className="xl:col-span-2">
+              <SectionRail index="04" title="Experience" note="The work, in plain terms." />
+            </div>
+
+            <div className="grid gap-8 xl:col-span-10">
+              {experiences.map((experience, index) => (
+                <Reveal
+                  key={experience.id}
+                  className="grid gap-6 border-t border-[color:var(--rule-neutral)] pt-6 xl:grid-cols-12 xl:gap-x-8"
+                  delayMs={index * 60}
+                >
+                  <div className="xl:col-span-4">
+                    <p className="font-display text-[clamp(1.8rem,3vw,3rem)] uppercase leading-[0.95] tracking-[-0.05em] text-[var(--technical-green)]">
+                      {experience.company}
+                    </p>
+                    <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground">
+                      {experience.period} / {experience.location}
+                    </p>
+                    <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-[var(--signal-copper)]">
+                      {experience.role}
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 xl:col-span-8 xl:pl-6">
+                    {experience.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlight} className="grid gap-3 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-start">
+                        <span className="font-mono text-[0.66rem] uppercase tracking-[0.22em] text-[var(--signal-copper)]">
+                          0{highlightIndex + 1}
+                        </span>
+                        <p className="text-[1rem] leading-7 text-[var(--carbon-soft)]">{highlight}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div className="mx-auto grid max-w-[1440px] gap-y-16 px-5 py-16 sm:px-7 md:py-20 xl:grid-cols-12 xl:gap-x-8 xl:px-12 xl:py-24">
+            <div className="xl:col-span-2">
+              <SectionRail index="05" title="Projects" note="Short project notes, with the deeper writeups elsewhere." />
+            </div>
+
+            <div className="grid gap-8 xl:col-span-10">
+              {projects.map((project, index) => (
+                <Reveal
+                  key={project.slug}
+                  className="grid gap-6 border-t border-[color:var(--rule-neutral)] pt-6 xl:grid-cols-12 xl:gap-x-8"
+                  delayMs={index * 60}
+                >
+                  <div className="xl:col-span-4">
+                    <p className="font-display text-[clamp(1.7rem,3vw,2.8rem)] uppercase leading-[0.95] tracking-[-0.05em] text-[var(--technical-green)]">
+                      {project.title}
+                    </p>
+                    <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground">
+                      {project.period}
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 xl:col-span-8 xl:pl-6">
+                    <p className="font-mono text-[0.72rem] uppercase tracking-[0.17em] text-muted-foreground">
+                      {project.technologies.join(" / ")}
+                    </p>
+                    {project.resumeHighlights.map((highlight, highlightIndex) => (
+                      <div key={highlight} className="grid gap-3 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-start">
+                        <span className="font-mono text-[0.66rem] uppercase tracking-[0.22em] text-[var(--signal-copper)]">
+                          0{highlightIndex + 1}
+                        </span>
+                        <p className="text-[1rem] leading-7 text-[var(--carbon-soft)]">{highlight}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   )
 }
